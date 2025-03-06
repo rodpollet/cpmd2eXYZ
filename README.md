@@ -22,3 +22,9 @@ In comparison to the simpler XYZ format, the extended version stores useful info
 > Some machine-learning packages, e.g. [Allegro](https://github.com/mir-group/allegro), support and recommend the use of the extended XYZ format.
 
 > The present tool will extract the required informations from the CPMD files listed above and generate a trajectory in the extended XYZ format.
+
+Using the tool
+----------
+Simply provide the path to the CPMD output file, i.e.,
+
+./cpmd2extxyz.py path/to/your/cpmd_output
