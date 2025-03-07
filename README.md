@@ -17,7 +17,7 @@ An AIMD simulation performed with the CPMD code generates:
 
 Extended XYZ format
 ----------
-In comparison to the simpler XYZ format, the extended version stores useful informations on the second line of each configuration (a.k.a. the comment line), such as the cell parameters, the energy or the periodic boundary conditions.
+In comparison to the simpler XYZ format, its [extended version](https://github.com/libAtoms/extxyz) stores useful informations on the second line of each configuration (a.k.a. the comment line), such as the cell parameters, the energy or the periodic boundary conditions.
 
 > Some machine-learning packages, e.g. [Allegro](https://github.com/mir-group/allegro), support and recommend the use of the extended XYZ format.
 
@@ -28,3 +28,5 @@ Using the tool
 Simply provide the path to the CPMD output file, i.e.,
 
 ./cpmd2extxyz.py path/to/your/cpmd_output
+
+This will create the EXTTRAJ.xyz file.
