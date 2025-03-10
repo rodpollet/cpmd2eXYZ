@@ -27,6 +27,6 @@ Using the tool
 ----------
 Simply provide the path to the CPMD output file, i.e.,
 
-./cpmd2extxyz.py path/to/your/cpmd_output
+./cpmd2extXYZ.py path/to/your/cpmd_output
 
 This will create the EXTTRAJ.xyz file.
