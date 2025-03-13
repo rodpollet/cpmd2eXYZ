@@ -57,7 +57,8 @@ def read_trajectory_data(path_frc, num_atoms):
                 current_block.append(line)
                 if len(current_block) == num_atoms:
                     # Process complete block
-                    arr = np.loadtxt(current_block, dtype=np.float64, usecols=(1,2,3,7,8,9))
+                    arr = np.loadtxt(current_block, dtype=np.float64,
+                                     usecols=(1,2,3,7,8,9))
                     coords, frcs = np.split(arr, 2, axis=1)
                     coordinates.append(coords)
                     forces.append(frcs)
@@ -67,7 +68,7 @@ def read_trajectory_data(path_frc, num_atoms):
 
 def main():
     if len(sys.argv) < 2:
-        sys.exit("Usage: python cpmd2eXYZ.py <CPMD_output_file>")
+        sys.exit("Usage: cpmd2eXYZ.py <CPMD_output_file>")
 
     path_out = sys.argv[1]
     base_dir = os.path.dirname(path_out)
