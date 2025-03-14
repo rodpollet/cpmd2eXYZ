@@ -6,10 +6,11 @@ An AIMD simulation performed with the CPMD code generates:
 - an output file
 - a file ENERGIES which includes temperature (in K) and energies (in Ha) along the trajectory
 - a trajectory file TRAJEC.xyz in the XYZ format if the XYZ keyword is present in the input file
-- an FTRAJECTORY file including the forces (in Ha/Bohr) if the FORCES keyword is present in the input file
+- a TRAJECTORY file including the coordinates (in Bohr)
+- an FTRAJECTORY file also including the forces (in Ha/Bohr) if the FORCES keyword is present in the input file
 
 > [!IMPORTANT]
-> The present tool works if and only if the following line exists in the &CPMD section of the input file:\
+> Extracting the forces only works if the following line exists in the &CPMD section of the input file:\
 > TRAJECTORY XYZ FORCES SAMPLE
 
 ## Extended XYZ format
