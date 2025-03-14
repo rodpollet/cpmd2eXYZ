@@ -5,6 +5,7 @@ Convert CPMD output files to extended XYZ trajectory format
 
 import os
 import sys
+import argparse
 from contextlib import suppress
 
 import numpy as np
@@ -80,10 +81,17 @@ def read_trajectory_data(path_trj, aref, num_atoms):
         return np.array(coordinates)
 
 def main():
-    if len(sys.argv) < 2:
-        sys.exit("Usage: cpmd2eXYZ.py <CPMD_output_file>")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("CPMD_output", help="output file from a CPMD run")
+    parser.add_argument("-j", "--jump", type=int, default=1,
+                        help="do not keep every configuration")
+    args = parser.parse_args()
+    print(f"Output file is {args.CPMD_output}")
+    print(f"Will keep every {args.jump} configurations")
 
-    path_out = sys.argv[1]
+    njump = args.jump
+
+    path_out = args.CPMD_output
     base_dir = os.path.dirname(path_out)
     path_energy = os.path.join(base_dir, "ENERGIES")
     path_force = os.path.join(base_dir, "FTRAJECTORY")
@@ -123,11 +131,12 @@ def main():
 
     # Read trajectory data
     if areforces:
-        coordinates, forces = read_trajectory_data(path_traj, areforces, num_atoms)
+        coordinates, forces = read_trajectory_data(path_traj, areforces,
+                                                   num_atoms)
     else:
         coordinates = read_trajectory_data(path_traj, areforces, num_atoms)
 
-    num_frames = len(coordinates)
+    num_frames = len(coordinates)  # size of the 1st dimension = number of frames
 
     # Convert units
     coordinates *= BOHR_TO_ANGSTROM
@@ -144,7 +153,7 @@ def main():
 
     # Write extended XYZ file
     with open("EXTTRAJ.xyz", 'w', encoding='utf-8') as outfile:
-        for frame_idx in range(num_frames):
+        for frame_idx in range(0,num_frames,njump):
             # Write header
             outfile.write(f"{num_atoms}\n")
             outfile.write(
