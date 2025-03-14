@@ -28,4 +28,6 @@ Simply provide the path to the CPMD output file, i.e.,
 
 This will create the EXTTRAJ.xyz file.
 
+A --jump option allows to keep not every configurations.
+
 Check the test directory for a simple example.
